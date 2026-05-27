@@ -7,3 +7,6 @@ ehthumbs.db
 ehthumbs_vista.db
 cppcheck.cppcheck
 deploy*.sh
+lswtcs
+lswtcs*
+CMakeFiles*
