@@ -25,6 +25,22 @@ JNIEnv *jni_get_env()
 	return &jni_iface;
 }
 
+JavaVM *jni_get_vm()
+{
+	jni_fake_vm.reserved0 = (uintptr_t)&jni_fake_vm;
+	return (JavaVM *)&jni_fake_vm;
+}
+
+/* Real GetEnv: stash the env pointer in *out and report success. The
+ * default iface_ret0 stub returned 0 but left *out untouched, which
+ * caused .so JNI_OnLoad implementations to dereference garbage. */
+static ABI_ATTR jint iface_GetEnv_real(JavaVM *vm, void **out, jint version)
+{
+	(void)vm; (void)version;
+	if (out) *out = (void *)&jni_iface;
+	return 0;
+}
+
 void jni_register_class(jclass clazz)
 {
 	int idx;
@@ -757,6 +773,6 @@ static struct JNIInvokeInterface jni_fake_vm = {
     .DestroyJavaVM = &iface_ret0,
     .AttachCurrentThread = &iface_AttachCurrentThread,
     .DetachCurrentThread = &iface_ret0,
-    .GetEnv = &iface_ret0,
+    .GetEnv = (void *)&iface_GetEnv_real,
     .AttachCurrentThreadAsDaemon = &iface_ret0
 };
