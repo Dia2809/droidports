@@ -38,8 +38,8 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Os")
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb -mcpu=cortex-a9 -mfpu=vfpv3-d16 -fno-stack-protector")
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -mthumb -mcpu=cortex-a9 -mfpu=vfpv3-d16 -fno-stack-protector")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb -mcpu=cortex-a9 -mfpu=vfpv3-d16")
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -mthumb -mcpu=cortex-a9 -mfpu=vfpv3-d16")
 
 # Add the 3rd-party packages
 add_subdirectory(3rdparty)
@@ -87,7 +87,6 @@ add_executable(${PORT}
   ${COMMON_SOURCES}   # Common files
   ${PLATFORM_SOURCES} # Platform specific files
 )
-target_link_options(${PORT} PRIVATE -rdynamic)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmacro-prefix-map=\"${CMAKE_SOURCE_DIR}\"/=/")
 set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -fmacro-prefix-map=\"${CMAKE_SOURCE_DIR}\"/=/")
@@ -102,5 +101,4 @@ target_link_libraries(${PORT}
     ${BZIP2_LIBRARY}
     ${OPENAL_LIBRARY}
     pthread
-    dl
 )

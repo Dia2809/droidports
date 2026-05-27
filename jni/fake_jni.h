@@ -445,7 +445,6 @@ void JNI_OnUnload(JavaVM* vm, void* reserved);
 extern _jclass jstring_class;
 
 extern JNIEnv *jni_get_env();
-extern JavaVM *jni_get_vm();
 extern void jni_register_class(jclass clazz);
 
 #endif  /* JNI_H_ */
