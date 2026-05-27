@@ -1,5 +1,0 @@
-/ACGC-PC-Port/droidports/CMakeFiles/rebuild_cache.dir
-/ACGC-PC-Port/droidports/CMakeFiles/edit_cache.dir
-/ACGC-PC-Port/droidports/CMakeFiles/lswtcs.dir
-/ACGC-PC-Port/droidports/3rdparty/CMakeFiles/rebuild_cache.dir
-/ACGC-PC-Port/droidports/3rdparty/CMakeFiles/edit_cache.dir
